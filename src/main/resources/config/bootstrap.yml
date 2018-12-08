@@ -1,0 +1,38 @@
+# ===================================================================
+# Spring Cloud Config bootstrap configuration for the "dev" profile
+# In prod profile, properties will be overwriten by the ones defined in bootstrap-prod.yml
+# ===================================================================
+
+spring:
+    application:
+        name: jhipster-registry
+    profiles:
+        active: dev
+        include: git
+    cloud:
+        config:
+            server:
+                bootstrap: true
+                composite:
+                    - type: native
+                      search-locations: file:./central-config
+                prefix: /config
+                git:
+                    uri: https://gitlab.com/Serverone5692/application-properties-dev.git
+                    username: bryan.oc5692@gmail.com
+                    password: Eternidad2965
+                    skip-ssl-validation: true
+            fail-fast: true
+            # name of the config server's property source (file.yml) that we want to use
+            name: jhipster-registry
+            profile: dev # profile(s) of the property source
+            label: master # toggle to switch to a different version of the configuration as stored in git
+            # it can be set to any label, branch or commit of the config source git repository
+
+info:
+    project:
+        version: #project.version#
+
+# uncomment to enable encryption features
+encrypt:
+    key: 2f03cdc2-630c-4705-a3d7-d778dfe7d666
